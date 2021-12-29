@@ -2,7 +2,6 @@ package array
 
 import (
 	"errors"
-	"fmt"
 )
 
 const OutOfRangeByUpdate = "index error, the index must < array length and > 0"
@@ -10,7 +9,7 @@ const OutOfRangeByRead = "index error, the index must <= array length and > 0"
 
 type Array struct {
 	size int
-	Data [1000]int
+	Data []int
 }
 
 func (a *Array) GetSize() int {
@@ -30,7 +29,6 @@ func (a *Array) Add(index int, value int) error {
 	}
 	a.Data[index] = value
 	a.size++
-	fmt.Println(a.Data)
 	return nil
 }
 
@@ -94,8 +92,8 @@ func (a Array) Find(value int) (err error, res int) {
 	return errors.New("not find"), -1
 }
 
-func NewArray() *Array {
-	var data [1000]int
+func NewArray(n int) *Array {
+	data := make([]int, n)
 	arr := &Array{
 		size: 0,
 		Data: data,
